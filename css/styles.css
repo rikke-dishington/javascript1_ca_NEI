@@ -1,0 +1,111 @@
+/* General styling */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 40px;
+  background: #3e6dc9;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0px auto;
+}
+
+/* Header */
+header {
+  padding-bottom: 40px;
+}
+ul {
+  padding: 0px;
+}
+
+li {
+  display: inline;
+}
+
+nav a {
+  padding: 20px;
+}
+
+.current {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+  color: black;
+}
+
+/* Loader */
+.loader {
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #3e6dc9;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Contact form */
+
+form {
+  padding: 20px;
+  background: white;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  display: block;
+  margin-top: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 16px 0px;
+  border: none;
+  font-size: 16px;
+  background-color: #eee;
+}
+
+button {
+  background: #3e6dc9;
+  border: none;
+  width: 150px;
+  padding: 20px;
+  color: white;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.form-error {
+  display: none;
+  color: red;
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.message {
+  background: green;
+  padding: 20px;
+  color: white;
+  margin-bottom: 20px;
+}
