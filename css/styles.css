@@ -44,6 +44,12 @@ a:hover {
   color: black;
 }
 
+/* Error */
+.error {
+  color: white;
+  background: red;
+}
+
 /* Loader */
 .loader {
   border: 16px solid #f3f3f3;
@@ -63,8 +69,20 @@ a:hover {
   }
 }
 
-/* Contact form */
+/* Home page */
+.results {
+  display: flex;
+}
 
+.results img {
+  max-width: 500px;
+}
+
+.results div {
+  padding: 20px;
+}
+
+/* Contact form */
 form {
   padding: 20px;
   background: white;

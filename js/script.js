@@ -1,53 +1,40 @@
-const form = document.querySelector("#contactForm");
-const fullName = document.querySelector("#fullName");
-const fullNameError = document.querySelector("#fullNameError");
-const subject = document.querySelector("#subject");
-const subjectError = document.querySelector("#subjectError");
-const email = document.querySelector("#email");
-const emailError = document.querySelector("#emailError");
-const address = document.querySelector("#address");
-const addressError = document.querySelector("#addressError");
+const url = "https://api.thedogapi.com/v1/images/search";
 
-function submitForm(event) {
-  event.preventDefault();
+const resultsContainer = document.querySelector(".results");
 
-  if (checkLength(fullName.value, 0) === true) {
-    fullNameError.style.display = "none";
-  } else {
-    fullNameError.style.display = "block";
-  }
+async function fetchGames() {
+  try {
+    const response = await fetch(url);
+    const json = await response.json();
 
-  if (checkLength(subject.value, 9) === true) {
-    subjectError.style.display = "none";
-  } else {
-    subjectError.style.display = "block";
-  }
+    console.log(json);
 
-  if (validateEmail(email.value) === true) {
-    emailError.style.display = "none";
-  } else {
-    emailError.style.display = "block";
-  }
+    resultsContainer.innerHTML = "";
 
-  if (checkLength(address.value, 23) === true) {
-    addressError.style.display = "none";
-  } else {
-    addressError.style.display = "block";
-  }
-}
+    const game = json.results;
 
-form.addEventListener("submit", submitForm);
+    for (let i = 0; i < game.length; i++) {
+      console.log(game[i].background_image);
+      console.log(game[i].name);
+      console.log(game[i].rating);
+      if (i === 2) {
+        break;
+      }
 
-function checkLength(value, len) {
-  if (value.trim().length > len) {
-    return true;
-  } else {
-    return false;
+      const gameImg = game[i].background_image;
+      const gameName = game[i].name;
+      const gameRating = game[i].rating;
+
+      resultsContainer.innerHTML += `<div class="games">
+                                            <a href="details.html?id=${game.id}"><img src="${gameImg}"/></a>
+                                            <a href="details.html?id=${game.id}"><h4>${gameName}</h4>
+                                            <a href="details.html?id=${game.id}"><p>${gameRating}</p>
+                                        </div>`;
+    }
+  } catch (error) {
+    console.log(error);
+    resultsContainer.innerHTML = displayError("Oh no! An error occurred");
   }
 }
 
-function validateEmail(email) {
-  const regEx = /\S+@\S+\.\S+/;
-  const patternMatches = regEx.test(email);
-  return patternMatches;
-}
+fetchGames();
